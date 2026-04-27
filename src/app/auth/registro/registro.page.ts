@@ -4,29 +4,33 @@ import { RouterLink, Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 
 @Component({
-  selector: 'app-login-page',
+  selector: 'app-registro-page',
   imports: [FormsModule, RouterLink],
-  templateUrl: './login.page.html',
-  styleUrl: './login.page.css',
+  templateUrl: './registro.page.html',
+  styleUrl: './registro.page.css',
 })
-export class LoginPage {
+export class RegistroPage {
   email = '';
+  usuario = '';
   password = '';
+  confirmPassword = '';
   errorMessage = '';
 
   constructor(private auth: AuthService, private router: Router) {}
 
-  async onLogin() {
+  async onRegister() {
+
     try {
-      await this.auth.login(this.email, this.password);
+      if (this.password !== this.confirmPassword) {
+        this.errorMessage = "Las contraseñas no coinciden";
+        return;
+      }
+
+      await this.auth.registro(this.email, this.usuario, this.password);
       this.router.navigate(['/home']);
-    } 
-    
+    }
     catch (error: any) {
       this.errorMessage = error.message;
     }
-  }
-  aRegistro() {
-    this.router.navigate(['/registro']);
   }
 }

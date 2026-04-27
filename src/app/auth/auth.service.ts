@@ -1,4 +1,3 @@
-// src/app/core/services/auth.service.ts
 import { Injectable } from '@angular/core';
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
 import { environment } from '../../environments/environment';
@@ -16,6 +15,19 @@ export class AuthService {
     const { data, error } = await this.supabase.auth.signInWithPassword({ email, password });
     console.log('data:', data);
     console.log('error:', error);
+    if (error) throw error;
+      return data;
+  }
+  
+  async registro(email: string, usuario: string, password: string) {
+    const { data, error } = await this.supabase.auth.signUp({
+      email,
+      password,
+      options: {
+        data: { usuario }
+      }
+    });
+
     if (error) throw error;
       return data;
   }

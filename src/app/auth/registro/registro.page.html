@@ -1,0 +1,19 @@
+<div class="registro-container">
+
+    <div class="centro">
+                <h1>Registro</h1>
+        <img src="assets/logo.png" alt="Game Room Logo" />
+
+    <form (ngSubmit)="onRegister()">
+        <input [(ngModel)]="usuario" name="usuario" type="text" placeholder="Nombre de usuario" />
+        <input [(ngModel)]="email" name="email" type="text" placeholder="Email" />
+        <input [(ngModel)]="password" name="password" type="password" placeholder="Contraseña" />
+        <input [(ngModel)]="confirmPassword" name="confirmPassword" type="password" placeholder="Confirmar Contraseña" />
+        @if (errorMessage) {
+            <p class="error">{{ errorMessage }}</p>
+        }
+        <button type="submit">Registrarse</button>
+        <a routerLink="/login">Iniciar sesión</a>
+    </form>
+    </div>
+</div>

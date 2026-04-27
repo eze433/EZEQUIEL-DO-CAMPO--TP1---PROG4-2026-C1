@@ -7,11 +7,13 @@
     <form (ngSubmit)="onLogin()">
         <input [(ngModel)]="email" name="email" type="text" placeholder="Email" />
         <input [(ngModel)]="password" name="password" type="password" placeholder="Contraseña" />
-        <button type="submit">Login</button>
-        
         @if (errorMessage) {
             <p class="error">{{ errorMessage }}</p>
         }
+        <button type="submit">Login</button>
+        <a routerLink="/registro">Registrarse</a>
+        
+
 
     </form>
     </div>
