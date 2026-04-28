@@ -48,3 +48,20 @@ img {
 .error {
     color: red;
 }
+
+.quiensoy {
+    position: absolute;
+    top: 2%;
+    left: 1%;
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 0px;
+}
+
+.pregunta {
+    width: 75px;
+    height: 75px;
+}
+

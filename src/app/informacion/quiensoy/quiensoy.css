@@ -1,0 +1,35 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    width: 100%;
+    background-image: url('/assets/habitacion.png');
+    background-size: cover;
+    background-position: center;
+
+}
+
+.contenido {
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 40px;
+    border-radius: 10px;
+    text-align: center;
+    color: white;
+    font-family: "Bumbastika", cursive;
+}
+
+.foto-perfil {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+}
+
+.flecha {
+    width: 100px;
+    top: 2%;
+    left: 2%;
+    position: absolute;
+    cursor: pointer;
+}

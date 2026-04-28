@@ -54,5 +54,11 @@ export const routes: Routes = [
             import('./juegos/preguntados/preguntados').then(
                 (m) => m.Preguntados
             )
+    },
+    { path: 'quiensoy',
+      loadComponent: () =>
+        import('./informacion/quiensoy/quiensoy').then(
+          (m) => m.QuiensoyPage
+        )
     }
 ];

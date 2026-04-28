@@ -1,8 +1,11 @@
 <div class="login-container">
-
+    <div class="quiensoy">
+        <img class = "pregunta" src="assets/pregunta.webp" routerLink="/quiensoy" />
+        <h2> ¿Quién soy?</h2>
+    </div>
     <div class="centro">
                 <h1>Login</h1>
-        <img src="assets/logo.png" alt="Game Room Logo" />
+        <img src="assets/logo.png" />
 
     <form (ngSubmit)="onLogin()">
         <input [(ngModel)]="email" name="email" type="text" placeholder="Email" />

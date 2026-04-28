@@ -1,0 +1,14 @@
+<div class="container">
+    <img class="flecha" src="assets/volver.png" routerLink="/login" />
+    @if (user) {
+    <div class="contenido">
+        <img [src]="user.avatar_url" class="foto-perfil" />
+        <h2>{{ user.name }}</h2>
+        <p>@{{ user.login }}</p>
+        <a [href]="user.html_url" target="_blank">Ver perfil</a>
+        <h1>¿Por que buscaminas?</h1>
+        <p>Decidí que mi juego a elección fuera el buscaminas ya que es realmente uno de mis juegos favoritos,</p>
+        <p>mucha gente está familiarizada con él y me pareció que era la complejidad perfecta para el trabajo práctico</p>
+    </div>
+    }
+</div>
