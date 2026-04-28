@@ -26,5 +26,33 @@ export const routes: Routes = [
         import('./auth/registro/registro.page').then(
           (m) => m.RegistroPage,
         ),  
+    },
+    {
+        path: 'mayoromenor',
+        loadComponent: () =>
+            import('./juegos/mayoromenor/mayoromenor').then(
+                (m) => m.Mayoromenor
+            )
+    },
+    {
+        path: 'ahorcado',
+        loadComponent: () =>
+            import('./juegos/ahorcado/ahorcado').then(
+                (m) => m.Ahorcado
+            )
+    },
+    {
+        path: 'buscaminas',
+        loadComponent: () =>
+            import('./juegos/buscaminas/buscaminas').then(
+                (m) => m.Buscaminas
+            )
+    },
+    {
+        path: 'preguntados',
+        loadComponent: () =>
+            import('./juegos/preguntados/preguntados').then(
+                (m) => m.Preguntados
+            )
     }
 ];

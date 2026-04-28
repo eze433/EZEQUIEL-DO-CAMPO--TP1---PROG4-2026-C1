@@ -1,4 +1,4 @@
-div{
+.habitacion{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -6,4 +6,44 @@ div{
     background-size: cover;
     background-position: center;
     height: 100vh;
+    width: 100vw;
+    position: relative;
+}
+
+.juego {
+    position: absolute;
+    cursor: pointer;
+    clip-path: content-box;
+}
+
+.juego:hover {
+  filter: 
+    drop-shadow(1px 0px 0px white)
+    drop-shadow(-1px 0px 0px white)
+    drop-shadow(0px 1px 0px white)
+    drop-shadow(0px -1px 0px white);    
+}
+
+.mesa {
+    top: 60%;
+    left: 10%;
+    width: 400px;
+}
+
+.preguntados {
+    top: 38%;
+    left: 35%;
+    width: 180px;
+}
+
+.buscaminas {
+    top: 50%;
+    left: 50%;
+    width: 270px;
+}
+
+.ahorcado {
+    top: 10%;
+    left: 75%;
+    width: 450px;
 }
