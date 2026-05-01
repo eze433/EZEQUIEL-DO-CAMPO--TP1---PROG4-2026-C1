@@ -30,4 +30,8 @@ export class LoginPage {
   aRegistro() {
     this.router.navigate(['/registro']);
   }
+  ingresoRapido() {
+    this.email = 'usuario1@ejemplo.com';
+    this.password = 'Ejemplo123';
+  }
 }

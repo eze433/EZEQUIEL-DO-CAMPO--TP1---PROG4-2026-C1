@@ -1,7 +1,7 @@
 <div class="login-container">
     <div class="quiensoy">
         <img class = "pregunta" src="assets/pregunta.webp" routerLink="/quiensoy" />
-        <p> ¿Quién soy?</p>
+        <p>¿Quién soy?</p>
     </div>
     <div class="centro">
         <h1>Login</h1>
@@ -13,7 +13,8 @@
             <p class="error">{{ errorMessage }}</p>
         }
         <button matButton = "tonal" type="submit">Ingresar</button>
-        <button matButton = "filled" routerLink="/registro">Registrarse</button>`
+        <button type="button" matButton = "filled" routerLink="/registro">Registrarse</button>
+        <button type="button" matButton = "outlined" (click)="ingresoRapido()">Ingreso rápido</button>
     </form>
     </div>
 </div>
