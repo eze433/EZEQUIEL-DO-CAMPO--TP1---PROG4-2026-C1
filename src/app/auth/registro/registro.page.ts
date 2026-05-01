@@ -2,16 +2,18 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterLink, Router } from '@angular/router';
 import { AuthService } from '../auth.service';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-registro-page',
-  imports: [FormsModule, RouterLink],
+  imports: [FormsModule, RouterLink, MatButtonModule],
   templateUrl: './registro.page.html',
   styleUrl: './registro.page.css',
 })
 export class RegistroPage {
   email = '';
-  usuario = '';
+  nombre = '';
+  apellido = '';
   password = '';
   confirmPassword = '';
   errorMessage = '';
@@ -26,7 +28,7 @@ export class RegistroPage {
         return;
       }
 
-      await this.auth.registro(this.email, this.usuario, this.password);
+      await this.auth.registro(this.email, this.nombre, this.apellido, this.password);
       this.router.navigate(['/home']);
     }
     catch (error: any) {

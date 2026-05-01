@@ -1,23 +1,19 @@
 <div class="login-container">
     <div class="quiensoy">
         <img class = "pregunta" src="assets/pregunta.webp" routerLink="/quiensoy" />
-        <h2> ¿Quién soy?</h2>
+        <p> ¿Quién soy?</p>
     </div>
     <div class="centro">
-                <h1>Login</h1>
+        <h1>Login</h1>
         <img src="assets/logo.png" />
-
     <form (ngSubmit)="onLogin()">
         <input [(ngModel)]="email" name="email" type="text" placeholder="Email" />
         <input [(ngModel)]="password" name="password" type="password" placeholder="Contraseña" />
         @if (errorMessage) {
             <p class="error">{{ errorMessage }}</p>
         }
-        <button type="submit">Login</button>
-        <a routerLink="/registro">Registrarse</a>
-        
-
-
+        <button matButton = "tonal" type="submit">Ingresar</button>
+        <button matButton = "filled" routerLink="/registro">Registrarse</button>`
     </form>
     </div>
 </div>

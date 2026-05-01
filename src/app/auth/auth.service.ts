@@ -19,12 +19,12 @@ export class AuthService {
       return data;
   }
   
-  async registro(email: string, usuario: string, password: string) {
+  async registro(email: string, nombre: string, apellido: string, password: string) {
     const { data, error } = await this.supabase.auth.signUp({
       email,
       password,
       options: {
-        data: { usuario }
+        data: { nombre, apellido }
       }
     });
 
@@ -39,5 +39,10 @@ export class AuthService {
 
   getSession() {
     return this.supabase.auth.getSession();
+  }
+  
+  async getUser() {
+    const { data } = await this.supabase.auth.getUser();
+    return data.user;
   }
 }
