@@ -57,9 +57,7 @@ img {
     justify-content: center;
     align-items: center;
     text-align: center;
-    background-color: grey;
     padding: 15px;
-    border-radius: 10px;
 }
 
 .pregunta {
@@ -71,4 +69,12 @@ img {
 p {
     font-size: 18px;
     margin-top: 5px;
+}
+
+.quiensoy:hover {
+    filter: 
+    drop-shadow(1px 0px 0px white)
+    drop-shadow(-1px 0px 0px white)
+    drop-shadow(0px 1px 0px white)
+    drop-shadow(0px -1px 0px white);    
 }
