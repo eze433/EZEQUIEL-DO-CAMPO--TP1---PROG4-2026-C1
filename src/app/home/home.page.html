@@ -1,7 +1,24 @@
-<div class="habitacion">
-    <img class="juego mesa" src="assets/mesacartas.webp" (click)="iraJuego('mayoromenor')" alt="Mesa" />
-    <img class="juego preguntados" src="assets/arcade.webp" (click)="iraJuego('preguntados')" />
-    <img class="juego buscaminas" src="assets/buscaminas_compu.webp" (click)="iraJuego('buscaminas')" />
-    <img class="juego ahorcado" src="assets/pizarron.webp" (click)="iraJuego('ahorcado')" />
-</div>
+
+
+@if (salir){
+    <div class="habitacion"></div>
+        <div class="modal">
+            <h1>¿Está seguro que quiere cerrar sesión?</h1>
+            <div class="botones">
+                <button matButton="tonal" (click)="logout()">Si</button>
+                <button matButton="filled" (click)="salir = false">No</button>
+            </div>
+    </div>
+}
+
+@else {
+    <app-chat/>
+    <div class="habitacion">
+        <img class="volver" (click)="salirChat()" src="assets/volver.png"/>
+        <img class="juego mesa" src="assets/mesacartas.webp" (click)="iraJuego('mayoromenor')" alt="Mesa" />
+        <img class="juego preguntados" src="assets/arcade.webp" (click)="iraJuego('preguntados')" />
+        <img class="juego buscaminas" src="assets/buscaminas_compu.webp" (click)="iraJuego('buscaminas')" />
+        <img class="juego ahorcado" src="assets/pizarron.webp" (click)="iraJuego('ahorcado')" />
+    </div>
+}
 

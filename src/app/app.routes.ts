@@ -1,17 +1,19 @@
 import { Routes } from '@angular/router';
+import { logueadoGuard, sinLoginGuard } from './guards/guards';
 
 export const routes: Routes = [
     {
         path: '',
-        redirectTo: 'login',
+        redirectTo: 'auth/login',
         pathMatch: 'full',
     },
     {
-        path: 'login',
+        path: 'auth/login',
         loadComponent: () =>
         import('./auth/login/login.page').then(
             (m) => m.LoginPage,
         ),
+        canActivate: [logueadoGuard],
     },
     {
         path: 'home',
@@ -19,13 +21,15 @@ export const routes: Routes = [
         import('./home/home.page').then(
             (m) => m.HomePage,
         ),
+        canActivate: [sinLoginGuard],
     },
     {
-      path: 'registro',
+      path: 'auth/registro',
       loadComponent: () =>
         import('./auth/registro/registro.page').then(
           (m) => m.RegistroPage,
-        ),  
+        ),
+        canActivate: [logueadoGuard],
     },
     {
         path: 'mayoromenor',

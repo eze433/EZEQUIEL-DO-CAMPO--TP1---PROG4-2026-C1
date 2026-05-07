@@ -1,1 +1,61 @@
-<p>ahorcado works!</p>
+<div class="pizarron">
+
+  @if (estado === 'menu') {
+    <div class="modal">
+      <h1>¡Bienvenido al Ahorcado!</h1>
+      <p>Adivina la palabra oculta antes de que se complete el dibujo</p>
+      <button matButton="tonal" (click)="empezar()">Empezar</button>
+    </div>
+  }
+
+  @else if (estado === 'jugando') {
+    <img class="volver" src="assets/volver.png" (click)="volverAlMenu()" />
+    <h1>Ahorcado</h1>
+    <h2>Racha: {{ racha }}</h2>
+    <div class="contenido">
+      <img [src]="imagenAhorcado" alt="ahorcado" />
+      <div class="palabra">
+        <h1>{{ palabraMostrada }}</h1>
+      </div>
+    </div>
+    <div class="letras">
+      @for (letra of letras; track letra) {
+        <button
+          class="letra"
+          [class.usada]="letraUsada(letra)"
+          [disabled]="letraUsada(letra)"
+          (click)="adivinarLetra(letra)">
+          {{ letra }}
+        </button>
+      }
+    </div>
+  }
+
+  @else if (estado === 'ganaste') {
+    <div class="modal">
+      <h1>¡Ganaste!</h1>
+      <p>La palabra era: <strong>{{ palabra }}</strong></p>
+      <button matButton="tonal" (click)="empezar()">Jugar de nuevo</button>
+    </div>
+  }
+
+  @else if (estado === 'perdiste') {
+    <div class="modal">
+      <h1>¡Perdiste!</h1>
+      <p>La palabra era: <strong>{{ palabra }}</strong></p>
+      <button matButton="tonal" (click)="empezar()">Intentar de nuevo</button>
+    </div>
+  }
+
+  @else if (estado === 'volver') {
+    <div class="modal">
+        <h1>¿Quieres volver al menú?</h1>
+        <p>Se perderá tu racha actual</p>
+        <div class="botones">
+            <button matButton="tonal" routerLink="/home">Sí</button>
+            <button matButton="filled" (click)="estado = 'jugando'">No</button>
+        </div>
+    </div>
+  }
+
+</div>

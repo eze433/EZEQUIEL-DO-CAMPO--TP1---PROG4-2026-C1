@@ -1,0 +1,18 @@
+<div class="chat">
+  <h3 class="chat-titulo">Chat Global</h3>
+
+  <div class="chat-mensajes" #mensajesContainer>
+    @for (mensaje of mensajes(); track mensaje.id) {
+      <div class="mensaje" [class.propio]="mensaje.usuario === nombreUsuario">
+        <p class="mensaje-usuario">{{ mensaje.usuario }}</p>
+        <p class="mensaje-contenido">{{ mensaje.contenido }}</p>
+      </div>
+    }
+  </div>
+
+  <div class="chat-input">
+    <input [(ngModel)]="contenido" name="contenido" (keyup.enter)="enviar()"/>
+    <button matButton = "filled" (click)="enviar()">➤</button>
+  </div>
+</div>
+

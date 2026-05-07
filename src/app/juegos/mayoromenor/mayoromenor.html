@@ -1,1 +1,53 @@
-<p>mayoromenor works!</p>
+<div id="mesa" class="mesa">
+  <img src="assets/mazo.png" class="juego mazo" />
+
+  @if (estado === 'jugando') {
+    <img class="flecha" src="assets/volver.png" (click)="volverAlMenu()" />
+  }
+
+  @if (estado === 'menu') {
+    <div class="modal">
+      <h1>¡Bienvenido a Mayor o Menor!</h1>
+      <p>El objetivo del juego es adivinar si la próxima carta será mayor o menor que la actual</p>
+      <button matButton="tonal" (click)="empezar()">¡Empecemos!</button>
+    </div>
+  }
+
+  @if (estado === 'gameOver') {
+    <div class="modal">
+      <h1>¡Game Over!</h1>
+      <p>La siguiente carta era</p>
+      <img [src]="'assets/cartas/' + cartaActual + '.png'" class="card-img" />
+      <p>Tu racha final fue de: {{ racha }}</p>
+      <div class="botones">
+        <button matButton="tonal" (click)="empezar()">Reiniciar</button>
+        <button matButton="filled" routerLink="/home">Menú</button>
+      </div>
+    </div>
+  }
+
+  @if (estado === 'volver') {
+    <div class="modal">
+      <h1>¿Quieres volver al menú?</h1>
+      <p>Se perderá tu racha actual</p>
+      <div class="botones">
+        <button matButton="tonal" routerLink="/home">Sí</button>
+        <button matButton="filled" (click)="estado = 'jugando'">No</button>
+      </div>
+    </div>
+  }
+
+  @if (estado === 'jugando') {
+    <div class="centro">
+      <h1 id="racha">Racha: {{ racha }}</h1>
+      <div class="carta" [class.dando]="animando">
+        <img [src]="'assets/cartas/' + cartaActual + '.png'" class="card-img" />
+      </div>
+      <div class="botones">
+        <button matButton="filled" (click)="elegirMenor()">Menor</button>
+        <button matButton="filled" (click)="elegirMayor()">Mayor</button>
+      </div>
+    </div>
+  }
+
+</div>

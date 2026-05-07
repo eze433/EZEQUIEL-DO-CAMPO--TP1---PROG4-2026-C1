@@ -1,48 +1,82 @@
-import { Injectable } from '@angular/core';
-import { createClient, SupabaseClient } from '@supabase/supabase-js';
+import { Injectable, signal } from '@angular/core';
+import { createClient, SupabaseClient, RealtimeChannel, PostgrestQueryBuilder } from '@supabase/supabase-js';
 import { environment } from '../../environments/environment';
 import { Router } from '@angular/router';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  private supabase: SupabaseClient;
+  supabase: SupabaseClient;
+  tablaMensajes: PostgrestQueryBuilder<any, any, any, 'mensajes', unknown>;
+  usuarioActual = signal<IUsuario | null>(null);
 
   constructor(private router: Router) {
     this.supabase = createClient(environment.supabaseUrl, environment.supabaseKey);
+    this.tablaMensajes = this.supabase.from('mensajes');
+  }
+
+  crearCanal(): RealtimeChannel {
+    return this.supabase.channel('table-db-changes-' + Date.now());
   }
 
   async login(email: string, password: string) {
     const { data, error } = await this.supabase.auth.signInWithPassword({ email, password });
-    console.log('data:', data);
-    console.log('error:', error);
     if (error) throw error;
-      return data;
+    return data;
   }
-  
+
   async registro(email: string, nombre: string, apellido: string, password: string) {
     const { data, error } = await this.supabase.auth.signUp({
       email,
       password,
-      options: {
-        data: { nombre, apellido }
-      }
+      options: { data: { nombre, apellido } }
     });
-
     if (error) throw error;
       return data;
   }
 
   async logout() {
     await this.supabase.auth.signOut();
-    this.router.navigate(['/login']);
+    this.router.navigate(['/auth/login']);
   }
 
   getSession() {
     return this.supabase.auth.getSession();
   }
-  
+
   async getUser() {
     const { data } = await this.supabase.auth.getUser();
+    if (data.user) {
+      this.usuarioActual.set({
+        id: data.user.id,
+        email: data.user.email || '',
+        nombre: data.user.user_metadata['nombre'] || '',
+        apellido: data.user.user_metadata['apellido'] || '',
+      });
+    }
     return data.user;
   }
+
+  async enviarMensaje(usuario: string, contenido: string) {
+    const { data } = await this.tablaMensajes.insert({ usuario, contenido });
+    return data;
+  }
+
+  async traerMensajesYaExistentes() {
+    const { data } = await this.tablaMensajes.select('*').order('id', { ascending: true });
+    return data;
+  }
+}
+
+export interface IMensaje {
+  id: number;
+  usuario: string;
+  contenido: string;
+  created_at: Date;
+}
+
+export interface IUsuario {
+  id: string;
+  email: string;
+  nombre: string;
+  apellido: string;
 }
