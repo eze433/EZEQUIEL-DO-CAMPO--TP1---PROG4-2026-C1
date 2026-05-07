@@ -1,6 +1,6 @@
 # Inicios de sesión predeterminados:
 
-## Correo: robertosanchez43@ejemplo.com
+## Correo: usuario1@ejemplo.com
 ## Contraseña: Ejemplo123
 
 # SalaDeJuegos
