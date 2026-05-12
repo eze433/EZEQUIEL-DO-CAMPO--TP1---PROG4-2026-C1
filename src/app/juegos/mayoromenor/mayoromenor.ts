@@ -42,7 +42,7 @@ export class Mayoromenor {
 
   darCarta() {
     if (this.mazo.length === 0) {
-      alert('No quedan cartas en el mazo');
+      this.estado = 'ganaste';
       return;
     }
 
