@@ -6,6 +6,7 @@
       <div class="mensaje" [class.propio]="mensaje.usuario === nombreUsuario">
         <p class="mensaje-usuario">{{ mensaje.usuario }}</p>
         <p class="mensaje-contenido">{{ mensaje.contenido }}</p>
+        <p class="mensaje-fecha">{{ mensaje.created_at | date: "dd/MM/yyyy HH:mm" }}</p>
       </div>
     }
   </div>

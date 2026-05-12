@@ -9,13 +9,13 @@
     <div class="modal">
       <h1>¡Bienvenido a Mayor o Menor!</h1>
       <p>El objetivo del juego es adivinar si la próxima carta será mayor o menor que la actual</p>
-      <button matButton="tonal" (click)="empezar()">¡Empecemos!</button>
+      <button matButton="tonal" (click)="empezar()">Empezar</button>
     </div>
   }
 
-  @if (estado === 'gameOver') {
+  @if (estado === 'perdiste') {
     <div class="modal">
-      <h1>¡Game Over!</h1>
+      <h1>¡Perdiste!</h1>
       <p>La siguiente carta era</p>
       <img [src]="'assets/cartas/' + cartaActual + '.png'" class="card-img" />
       <p>Tu racha final fue de: {{ racha }}</p>
@@ -49,5 +49,17 @@
       </div>
     </div>
   }
+
+  @if (estado === 'ganaste') {
+    <div class="modal">
+      <h1>¡Ganaste!</h1>
+      <p>No se como lo conseguiste, me atrevo a decir que estas leyendo el código</p>
+      <div class="botones">
+        <button matButton="tonal" (click)="empezar()">Reiniciar</button>
+        <button matButton="filled" routerLink="/home">Menú</button>
+      </div>
+    </div>
+  }
+
 
 </div>

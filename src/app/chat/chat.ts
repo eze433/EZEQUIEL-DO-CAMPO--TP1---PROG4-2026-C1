@@ -3,10 +3,11 @@ import { FormsModule } from '@angular/forms';
 import { AuthService, IMensaje } from '../auth/auth.service';
 import { RealtimeChannel } from '@supabase/supabase-js';
 import { MatButtonModule } from '@angular/material/button';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-chat',
-  imports: [FormsModule, MatButtonModule],
+  imports: [FormsModule, MatButtonModule, DatePipe],
   templateUrl: './chat.html',
   styleUrl: './chat.css',
 })

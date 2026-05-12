@@ -2,6 +2,7 @@ import { Component, ChangeDetectorRef } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { Router, RouterLink } from '@angular/router';
+import { AuthService } from '../../auth/auth.service';
 
 @Component({
   selector: 'app-mayoromenor',
@@ -10,7 +11,7 @@ import { Router, RouterLink } from '@angular/router';
   styleUrl: './mayoromenor.css',
 })
 export class Mayoromenor {
-  estado: 'menu' | 'jugando' | 'gameOver' | 'volver' = 'menu';
+  estado: 'menu' | 'jugando' | 'perdiste' | 'volver' | 'ganaste'  = 'menu';
   palos = ['hearts', 'diamonds', 'clubs', 'spades'];
   valores = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
   mazo: string[] = [];
@@ -19,7 +20,7 @@ export class Mayoromenor {
   racha: number = 0;
   animando = false;
 
-  constructor(private cdr: ChangeDetectorRef, private router: Router) {}
+  constructor(private cdr: ChangeDetectorRef, private router: Router, private auth: AuthService) {}
 
   obtenerValor(carta: string): number {
     return parseInt(carta.split('_')[1], 10);
@@ -65,16 +66,27 @@ export class Mayoromenor {
     this.darCarta();
   }
 
+  correcta() {
+    this.racha++;
+    this.darCarta();
+  }
+
+  async incorrecta(nuevaCarta: string) {
+    this.cartaActual = nuevaCarta;
+    this.estado = 'perdiste';
+    await this.auth.guardarPuntaje('puntajes_mayoromenor', this.racha);
+  }
+
   elegirMayor() {
     const nuevaCarta = this.mazo[0];
     const nuevoValor = this.obtenerValor(nuevaCarta);
 
     if (nuevoValor >= this.valorActual) {
-      this.racha++;
-      this.darCarta();
-    } else {
-      this.cartaActual = nuevaCarta;
-      this.estado = 'gameOver';
+      this.correcta();
+    } 
+    
+    else {
+      this.incorrecta(nuevaCarta);
     }
   }
 
@@ -83,11 +95,11 @@ export class Mayoromenor {
     const nuevoValor = this.obtenerValor(nuevaCarta);
 
     if (nuevoValor <= this.valorActual) {
-      this.racha++;
-      this.darCarta();
-    } else {
-      this.cartaActual = nuevaCarta;
-      this.estado = 'gameOver';
+      this.correcta();
+    } 
+    
+    else {
+      this.incorrecta(nuevaCarta);
     }
   }
 

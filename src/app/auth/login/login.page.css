@@ -39,10 +39,10 @@ input {
     font-size: 16px;
 }
 
-img {
-    width: 250px;
-    height: 250px;
+.logo {
+    width: 300px;
     margin-bottom: 20px;
+    margin-top: 15px;
 }
 
 .error {

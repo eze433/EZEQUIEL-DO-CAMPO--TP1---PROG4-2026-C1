@@ -1,0 +1,115 @@
+.rankings {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url('/assets/habitacion.png');
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  width: 100vw;
+  position: relative;
+  overflow: hidden;
+}
+
+.flecha {
+  position: absolute;
+  top: 4%;
+  left: 2%;
+  width: 100px;
+  cursor: pointer;
+}
+
+.flecha:hover {
+  filter: 
+    drop-shadow(1px 0px 0px white)
+    drop-shadow(-1px 0px 0px white)
+    drop-shadow(0px 1px 0px white)
+    drop-shadow(0px -1px 0px white);    
+}
+
+.contenido {
+  background-color: rgba(0, 0, 0, 0.85);
+  padding: 40px;
+  border-radius: 20px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  min-width: 650px;
+}
+
+.contenido h1 {
+  font-size: 36px;
+  margin: 0;
+}
+
+
+::ng-deep .mat-mdc-tab-group {
+  width: 100%;
+}
+
+::ng-deep .mat-mdc-tab {
+  color: white !important;
+}
+
+::ng-deep .mat-mdc-tab-header {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+::ng-deep .mdc-tab__text-label {
+  color: white !important;
+}
+
+::ng-deep .mat-mdc-tab.mdc-tab--active .mdc-tab__text-label {
+  color: white !important;
+}
+
+::ng-deep .mat-mdc-tab-body-content {
+  padding-top: 20px;
+}
+
+.tabla {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 16px;
+  color: white;
+}
+
+.tabla th {
+  padding: 12px 20px;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+  text-align: left;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.tabla td {
+  padding: 12px 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.tabla tr:hover td {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.primero td {
+    color: gold;
+    font-weight: bold;
+}
+
+.segundo td {
+    color: silver;
+    font-weight: bold;
+}
+
+.tercero td {
+    color: #a76626;
+    font-weight: bold;
+}
+
+.vacio {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 18px;
+  padding: 20px;
+  text-align: center;
+}

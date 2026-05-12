@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { Router, RouterLink } from '@angular/router';
+import { AuthService } from '../../auth/auth.service';
 
 @Component({
   selector: 'app-ahorcado',
@@ -29,7 +30,7 @@ export class Ahorcado {
   ];
   racha: number = 0;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private auth: AuthService) {}
 
   get palabraMostrada(): string {
     return this.palabra.split('').map(l => this.letrasAdivinadas.includes(l.toUpperCase()) ? l : '_').join(' ');
@@ -51,17 +52,17 @@ export class Ahorcado {
     this.estado = "jugando";
   }
 
-  adivinarLetra(letra: string) {
+  async adivinarLetra(letra: string) {
     if (this.letrasAdivinadas.includes(letra))
       return;
     this.letrasAdivinadas.push(letra);
 
     if (!this.palabra.includes(letra)) {
       this.intentosRestantes--;
-      if (this.intentosRestantes === 0) {
+      if (this.intentosRestantes <= 0) {
         this.estado = 'perdiste';
+        await this.auth.guardarPuntaje('puntajes_ahorcado', this.racha);
         this.racha = 0;
-        return;
       }
     }
 
@@ -74,7 +75,7 @@ export class Ahorcado {
   volverAlMenu() {
     if (this.racha > 0) {
       this.estado = 'volver';
-    } 
+    }
     
     else {
       this.router.navigate(['/home']);

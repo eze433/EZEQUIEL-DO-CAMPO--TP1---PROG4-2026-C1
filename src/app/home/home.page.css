@@ -53,12 +53,27 @@
     position: absolute;
     top: 4%;
     left: 2%;
-    font-size: 50px;
     width: 100px;
     cursor: pointer;
 }
 
 .volver:hover {
+    filter: 
+    drop-shadow(1px 0px 0px white)
+    drop-shadow(-1px 0px 0px white)
+    drop-shadow(0px 1px 0px white)
+    drop-shadow(0px -1px 0px white);    
+}
+
+.rankings {
+    position: absolute;
+    top: 3%;
+    left: 10%;
+    width: 100px;
+    cursor: pointer;
+}
+
+.rankings:hover {
     filter: 
     drop-shadow(1px 0px 0px white)
     drop-shadow(-1px 0px 0px white)
@@ -87,5 +102,4 @@
   align-items: center;
   gap: 20px;
   min-width: 400px;
-  
 }

@@ -65,6 +65,26 @@ export class AuthService {
     const { data } = await this.tablaMensajes.select('*').order('id', { ascending: true });
     return data;
   }
+
+    async guardarPuntaje(tabla: 'puntajes_preguntados' | 'puntajes_mayoromenor' | 'puntajes_ahorcado' | 'puntajes_buscaminas', puntaje: number) {
+
+    const usuario = await this.getUser();
+    const nombre = usuario?.user_metadata?.['nombre'] || '';
+    const apellido = usuario?.user_metadata?.['apellido'] || '';
+
+    const { error } = await this.supabase.from(tabla).insert({usuario_id: usuario?.id,
+    usuario:`${nombre} ${apellido}`.trim(),puntaje,});
+
+    if (error)
+      throw error;
+  }
+
+  async traerPuntajes(tabla: 'puntajes_preguntados' | 'puntajes_mayoromenor' | 'puntajes_ahorcado' | 'puntajes_buscaminas') {
+    const { data, error } = await this.supabase.from(tabla).select('*');
+
+    if (error) throw error;
+      return data;
+  }
 }
 
 export interface IMensaje {

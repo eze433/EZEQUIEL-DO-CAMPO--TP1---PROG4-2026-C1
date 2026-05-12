@@ -64,5 +64,12 @@ export const routes: Routes = [
         import('./informacion/quiensoy/quiensoy').then(
           (m) => m.QuiensoyPage
         )
+    },
+    {
+        path: 'rankings',
+        loadComponent: () =>
+            import('./rankings/rankings').then(
+                (m) => m.Rankings
+            )
     }
 ];

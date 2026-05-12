@@ -17,14 +17,27 @@ export class LoginPage {
 
   constructor(private auth: AuthService, private router: Router) {}
 
+  traducirError(mensaje: string): string {
+    if (mensaje.includes('Invalid login credentials'))
+      return 'Email o contraseña incorrectos';
+
+    return 'Ocurrió un error, intentá de nuevo';
+}
+
   async onLogin() {
     try {
+
+      if (!this.email || !this.password) {
+        this.errorMessage = 'Completá todos los campos';
+        return;
+      }
+      
       await this.auth.login(this.email, this.password);
       this.router.navigate(['/home']);
     } 
     
     catch (error: any) {
-      this.errorMessage = error.message;
+      this.errorMessage = this.traducirError(error.message);
     }
   }
   aRegistro() {

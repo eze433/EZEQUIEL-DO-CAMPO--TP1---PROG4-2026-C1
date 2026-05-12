@@ -1,0 +1,81 @@
+<div class="rankings">
+  <img class="flecha" src="assets/volver.png" routerLink="/home" />
+
+
+  
+  <div class="contenido">
+    <h1>🏆 Rankings</h1>
+
+    <mat-tab-group (selectedIndexChange)="cambiarTab($event)">
+
+      <mat-tab label="Preguntados">
+        <ng-template matTabContent>
+          <ng-container *ngTemplateOutlet="tablaTemplate"></ng-container>
+        </ng-template>
+      </mat-tab>
+
+      <mat-tab label="Mayor o Menor">
+        <ng-template matTabContent>
+          <ng-container *ngTemplateOutlet="tablaTemplate"></ng-container>
+        </ng-template>
+      </mat-tab>
+
+      <mat-tab label="Ahorcado">
+        <ng-template matTabContent>
+          <ng-container *ngTemplateOutlet="tablaTemplate"></ng-container>
+        </ng-template>
+      </mat-tab>
+
+      <mat-tab label="Buscaminas">
+        <ng-template matTabContent>
+          <ng-container *ngTemplateOutlet="tablaTemplate"></ng-container>
+        </ng-template>
+      </mat-tab>
+
+    </mat-tab-group>
+
+    <ng-template #tablaTemplate>
+      @if (puntajes().length === 0) {
+        <p class="vacio">No hay puntajes todavía</p>
+      }
+      
+      @else {
+        <table class="tabla">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Jugador</th>
+              <th>Puntaje</th>
+              <th>Fecha</th>
+            </tr>
+
+          </thead>
+          <tbody>
+            @for (puntaje of puntajes(); track puntaje.id; let i = $index) {
+              <tr [class.primero]="i === 0" [class.segundo]="i === 1" [class.tercero]="i === 2">
+                <td>
+
+                  @if (i === 0){ 🥇}
+
+                  @else if (i === 1) {🥈}
+
+                  @else if (i === 2) {🥉}
+
+                  @else {{{ i + 1 }}}
+
+                </td>
+
+                <td>{{ puntaje.usuario }}</td>
+                <td>{{ puntaje.puntaje }}</td>
+                <td>{{ puntaje.created_at | date:'dd/MM/yyyy' }}</td>
+              </tr>
+
+            }
+          </tbody>
+        </table>
+
+      }
+    </ng-template>
+
+  </div>
+</div>

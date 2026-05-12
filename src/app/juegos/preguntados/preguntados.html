@@ -1,1 +1,107 @@
-<p>preguntados works!</p>
+<div class="pantalla">
+  <img class="flecha" src="assets/volverblanco.png" (click)="volverAlMenu()" />
+
+
+  @if (cargando()) {
+    <div class="modal">
+      <h1>Cargando...</h1>
+    </div>
+  }
+
+  @else if (estado === 'menu' && !cargando()) {
+
+    <div class="modal">
+      <h1>¡Bienvenido a preguntados!</h1>
+
+      <p>Responde 10 preguntas de videojuegos</p>
+      <button matButton="tonal" (click)="empezar()">Empezar</button>
+    </div>
+  }
+
+
+
+  @else if (estado === 'jugando' && !cargando()) {
+    <div class="contenido">
+      <div class="encabezado">
+        <h2>Pregunta {{ indiceActual + 1 }} / {{ preguntas.length }}</h2>
+        <h2>Puntaje: {{ puntaje }}</h2>
+      </div>
+
+      <div class="tarjeta">
+
+        <h1 class="pregunta">{{ preguntaActual.pregunta }}</h1>
+        <div class="respuestas">
+          @for (respuesta of preguntaActual.respuestas; track respuesta) {
+            <button
+              matButton="filled"
+              class="respuesta"
+              (click)="responder(respuesta)">
+              {{ respuesta }}
+            </button>
+          }
+
+        </div>
+      </div>
+    </div>
+  }
+
+  @else if (estado === 'respondida') {
+    <div class="contenido">
+
+      <div class="encabezado">
+        <h2>Pregunta {{ indiceActual + 1 }} / {{ preguntas.length }}</h2>
+        <h2>Puntaje: {{ puntaje }}</h2>
+      </div>
+
+      <div class="tarjeta">
+        <h1 class="pregunta">{{ preguntaActual.pregunta }}</h1>
+        <div class="respuestas">
+          @for (respuesta of preguntaActual.respuestas; track respuesta) {
+            <button
+              matButton="filled"
+              class="respuesta"
+              [class.correcta]="respuesta === preguntaActual.respuestaCorrecta"
+              [class.incorrecta]="respuesta === respuestaSeleccionada && !correcta">
+              {{ respuesta }}
+            </button>
+          }
+        </div>
+
+        @if (correcta) {
+          <p class="feedback correcto">¡Correcto!</p>
+        }
+        
+        @else {
+          <p class="feedback incorrecto">Incorrecto. La respuesta era: {{ preguntaActual.respuestaCorrecta }}</p>
+        }
+
+        <button matButton="tonal" (click)="siguiente()">
+          {{ indiceActual < preguntas.length - 1 ? 'Siguiente' : 'Ver resultado' }}
+        </button>
+      </div>
+    </div>
+  }
+
+  @else if (estado === 'finJuego' && !cargando()) {
+    <div class="modal">
+
+      <h1>¡Fin del juego!</h1>
+      <p>Puntaje final: {{ puntaje }} / {{ preguntas.length }}</p>
+      <div class="modal-botones">
+        <button matButton="tonal" (click)="empezar()">Jugar de nuevo</button>
+        <button matButton="filled" (click)="volverAlMenu()">Menú</button>
+      </div>
+    </div>
+  }
+
+  @else if (estado === 'volver') {
+    <div class="modal">
+        <h1>¿Quieres volver al menú?</h1>
+        <p>Se perderá tu puntaje actual</p>
+        <div class="botones">
+            <button matButton="tonal" routerLink="/home">Sí</button>
+            <button matButton="filled" (click)="estado = 'jugando'">No</button>
+        </div>
+    </div>
+  }
+</div>

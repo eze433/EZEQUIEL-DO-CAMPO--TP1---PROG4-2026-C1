@@ -20,11 +20,27 @@ export class RegistroPage {
 
   constructor(private auth: AuthService, private router: Router) {}
 
+  traducirError(mensaje: string): string {
+    if (mensaje.includes('User already registered'))
+      return 'Este email ya está registrado';
+
+    if (mensaje.includes('Password should be at least'))
+      return 'La contraseña debe tener al menos 6 caracteres';
+
+    return 'Ocurrió un error, intentá de nuevo';
+  }
+
+
   async onRegister() {
 
     try {
       if (this.password !== this.confirmPassword) {
-        this.errorMessage = "Las contraseñas no coinciden";
+        this.errorMessage = 'Las contraseñas no coinciden';
+        return;
+      }
+
+      if (!this.nombre || !this.apellido || !this.email || !this.password) {
+        this.errorMessage = 'Completá todos los campos';
         return;
       }
 
@@ -32,7 +48,7 @@ export class RegistroPage {
       this.router.navigate(['/home']);
     }
     catch (error: any) {
-      this.errorMessage = error.message;
+      this.errorMessage = this.traducirError(error.message);
     }
   }
 }
