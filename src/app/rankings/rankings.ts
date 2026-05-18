@@ -32,9 +32,15 @@ export class Rankings implements OnInit {
     await this.cargarPuntajes();
   }
 
+
+  get esBuscaminas() {
+    return this.juegoSeleccionado() === 'puntajes_buscaminas';
+  }
+  
   async cargarPuntajes() {
     const data = await this.auth.traerPuntajes(this.juegoSeleccionado()) as IPuntaje[];
     const esBuscaminas = this.juegoSeleccionado() === 'puntajes_buscaminas';
+
 
     const mapaUsuarios = new Map<string, IPuntaje>();
     for (const puntaje of data ?? []) {

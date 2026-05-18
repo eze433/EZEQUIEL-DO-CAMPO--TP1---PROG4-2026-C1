@@ -25,6 +25,7 @@ export class LoginPage {
 }
 
   async onLogin() {
+    this.errorMessage = '';
     try {
 
       if (!this.email || !this.password) {

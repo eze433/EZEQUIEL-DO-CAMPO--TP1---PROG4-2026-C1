@@ -4,7 +4,7 @@
 
   
   <div class="contenido">
-    <h1>🏆 Rankings</h1>
+    <h1>Rankings</h1>
 
     <mat-tab-group (selectedIndexChange)="cambiarTab($event)">
 
@@ -64,9 +64,10 @@
                   @else {{{ i + 1 }}}
 
                 </td>
-
+                
                 <td>{{ puntaje.usuario }}</td>
-                <td>{{ puntaje.puntaje }}</td>
+                @if (esBuscaminas){<td>{{ puntaje.puntaje }} s</td>}
+                @else {<td>{{ puntaje.puntaje }}</td>}
                 <td>{{ puntaje.created_at | date:'dd/MM/yyyy' }}</td>
               </tr>
 

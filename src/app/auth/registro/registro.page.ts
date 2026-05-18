@@ -32,7 +32,7 @@ export class RegistroPage {
 
 
   async onRegister() {
-
+    this.errorMessage = '';
     try {
       if (this.password !== this.confirmPassword) {
         this.errorMessage = 'Las contraseñas no coinciden';

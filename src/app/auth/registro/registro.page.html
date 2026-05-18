@@ -13,9 +13,8 @@
         @if (errorMessage) {
             <p class="error">{{ errorMessage }}</p>
         }
-        <button matButton = "tonal" type="submit">Registrarse</button>
-        <p> ¿Ya tienes una cuenta? </p>
-        <button  type="button" matButton = "filled" routerLink="/auth/login">Iniciar sesión</button>
+        <button matButton = "filled" type="submit">Registrarse</button>
+        <p> ¿Ya tienes una cuenta? <a routerLink="/auth/login">Iniciar sesión</a> </p>
     </form>
     </div>
 </div>

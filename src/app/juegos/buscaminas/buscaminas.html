@@ -60,7 +60,7 @@
     <div class="modal">
       <h1>¡Ganaste!</h1>
       <p>Encontraste todas las minas</p>
-      <p>Tiempo: {{ tiempo() }}</p>
+      <p>Tiempo: {{ tiempo() }} segundos</p>
       <div class="modal-botones">
         <button matButton="tonal" (click)="empezar()">Jugar de nuevo</button>
         <button matButton="filled" routerLink="/home">Menú</button>
@@ -71,7 +71,7 @@
   @if (estado === 'perdiste') {
     <div class="modal">
       <h1>¡Perdiste!</h1>
-      <p>Tiempo: {{ tiempo() }}</p>
+      <p>Tiempo: {{ tiempo() }} segundos</p>
 
       <div class="modal-botones">
         <button matButton="tonal" (click)="empezar()">Intentar de nuevo</button>
